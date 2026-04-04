@@ -30,7 +30,7 @@ pipeline{
                 
 		}
 	}
-	stage("package"){
+	stage("deploy"){
 	    steps{
 	sshagent(['tomcat']) {
     // some block
