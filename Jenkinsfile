@@ -30,7 +30,23 @@ pipeline{
                 
 		}
 	}
-		  
+	stage("package"){
+	    steps{
+	sshagent(['tomcat']) {
+    // some block
+	
+	sh """
+                 
+            scp -o StrictHostKeyChecking=no target/myweb.war ec2-user@15.206.93.206:/home/ec2-user/tomcat10/webapps/
+
+              ssh ec2-user@15.206.93.206 /home/ec2-user/tomcat10/bin/shutdown.sh
+              ssh ec2-user@15.206.93.206 /home/ec2-user/tomcat10/bin/startup.sh
+            
+          
+          """
+}	  
      
     } 
+}
+}
 }
